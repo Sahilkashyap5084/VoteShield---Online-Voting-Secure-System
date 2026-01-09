@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - VoteShield</title>
+    <style>
+        :root {
+            --color-cream-50: rgba(255, 245, 235, 1);
+            --color-cream-100: rgba(255, 250, 240, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-red-600: #DC2626;
+            --color-red-700: #B91C1C;
+            --color-brown-600-rgb: 94, 82, 64;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-cream-50);
+            color: var(--color-slate-900);
+            line-height: 1.8;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--color-cream-100);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(var(--color-brown-600-rgb), 0.15);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-slate-900);
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--color-slate-900);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-slate-900);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-red-600);
+        }
+
+        .login-btn {
+            background-color: var(--color-red-600);
+            color: white;
+            padding: 10px 28px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: var(--color-red-700);
+        }
+
+        /* Main Content */
+        .terms-container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        .terms-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .terms-header h1 {
+            font-size: 42px;
+            color: var(--color-slate-900);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .terms-header .last-updated {
+            font-size: 14px;
+            color: var(--color-slate-500);
+            font-style: italic;
+        }
+
+        .terms-content {
+            background-color: var(--color-cream-100);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .terms-section {
+            margin-bottom: 40px;
+        }
+
+        .terms-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-section h2 {
+            font-size: 24px;
+            color: var(--color-slate-900);
+            margin-bottom: 16px;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(var(--color-brown-600-rgb), 0.2);
+        }
+
+        .terms-section h3 {
+            font-size: 18px;
+            color: var(--color-slate-900);
+            margin: 20px 0 12px 0;
+            font-weight: 600;
+        }
+
+        .terms-section p {
+            font-size: 15px;
+            color: var(--color-slate-900);
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+
+        .terms-section ul, .terms-section ol {
+            margin: 16px 0 16px 30px;
+            color: var(--color-slate-900);
+        }
+
+        .terms-section li {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .terms-section strong {
+            color: var(--color-slate-900);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 15px;
+            color: #856404;
+        }
+
+        .contact-info {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 15px;
+            color: #0c5460;
+        }
+
+        /* Footer */
+        footer {
+            background: #23262a;
+            color: #e6e6e6;
+            padding: 50px 0 30px 0;
+            margin-top: 80px;
+        }
+
+        footer .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            color: #e6e6e6;
+        }
+
+        footer a {
+            color: #e6e6e6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .logo-icon {
+            background-color: var(--color-slate-900);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .terms-container {
+                padding: 0 20px;
+                margin: 40px auto;
+            }
+
+            .terms-header h1 {
+                font-size: 32px;
+            }
+
+            .terms-content {
+                padding: 30px 24px;
+            }
+
+            .terms-section h2 {
+                font-size: 20px;
+            }
+
+            footer .footer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <span>VoteShield</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Terms of Service Content -->
+    <div class="terms-container">
+        <div class="terms-header">
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last Updated: November 17, 2025</p>
+        </div>
+
+        <div class="terms-content">
+            <!-- Introduction -->
+            <div class="terms-section">
+                <h2>1. Introduction</h2>
+                <p>Welcome to VoteShield ("we," "our," or "us"). These Terms of Service ("Terms") govern your access to and use of VoteShield's online voting platform, website, and related services (collectively, the "Service"). By accessing or using our Service, you agree to be bound by these Terms.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Important:</strong> Please read these Terms carefully before using our Service. If you do not agree to these Terms, you may not access or use the Service.</p>
+                </div>
+            </div>
+
+            <!-- Acceptance of Terms -->
+            <div class="terms-section">
+                <h2>2. Acceptance of Terms</h2>
+                <p>By creating an account, registering as a voter, or using any part of our Service, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. These Terms constitute a legally binding agreement between you and VoteShield, Inc.</p>
+            </div>
+
+            <!-- Eligibility -->
+            <div class="terms-section">
+                <h2>3. Eligibility Requirements</h2>
+                <p>To use VoteShield, you must meet the following eligibility criteria:</p>
+                <ul>
+                    <li><strong>Age Requirement:</strong> You must be at least 18 years of age to register and vote on our platform.</li>
+                    <li><strong>Legal Capacity:</strong> You must have the legal capacity to enter into a binding agreement.</li>
+                    <li><strong>Valid Identification:</strong> You must possess a valid Voter ID number in the format of three capital letters followed by seven digits (e.g., ABC1234567).</li>
+                    <li><strong>Accurate Information:</strong> All information provided during registration must be accurate, complete, and current.</li>
+                    <li><strong>Compliance:</strong> You must comply with all applicable local, state, national, and international laws and regulations.</li>
+                </ul>
+            </div>
+
+            <!-- Account Registration -->
+            <div class="terms-section">
+                <h2>4. Account Registration and Security</h2>
+                
+                <h3>4.1 Registration Process</h3>
+                <p>To participate in voting, you must create an account by providing:</p>
+                <ul>
+                    <li>Full legal name</li>
+                    <li>Valid email address</li>
+                    <li>Valid Voter ID number (format: ABC1234567)</li>
+                    <li>Date of birth</li>
+                    <li>Secure password</li>
+                    <li>Facial biometric data for identity verification</li>
+                </ul>
+
+                <h3>4.2 Account Security</h3>
+                <p>You are responsible for:</p>
+                <ul>
+                    <li>Maintaining the confidentiality of your account credentials</li>
+                    <li>All activities that occur under your account</li>
+                    <li>Notifying us immediately of any unauthorized access or security breaches</li>
+                    <li>Using a strong, unique password for your account</li>
+                </ul>
+
+                <h3>4.3 One Person, One Vote</h3>
+                <p>Each individual may register only one account. Creating multiple accounts or attempting to vote more than once is strictly prohibited and may result in criminal prosecution.</p>
+            </div>
+
+            <!-- Use of Service -->
+            <div class="terms-section">
+                <h2>5. Use of Service</h2>
+                
+                <h3>5.1 Permitted Use</h3>
+                <p>You may use the Service to:</p>
+                <ul>
+                    <li>Register as a voter with valid credentials</li>
+                    <li>Cast one vote per election cycle</li>
+                    <li>View information about candidates and elections</li>
+                    <li>Access your voting history (limited information for privacy)</li>
+                </ul>
+
+                <h3>5.2 Prohibited Activities</h3>
+                <p>You agree NOT to:</p>
+                <ul>
+                    <li>Attempt to vote more than once in any election</li>
+                    <li>Use another person's identity, credentials, or Voter ID</li>
+                    <li>Create multiple accounts or share accounts with others</li>
+                    <li>Interfere with or disrupt the Service or servers</li>
+                    <li>Attempt to hack, bypass security, or access unauthorized areas</li>
+                    <li>Use automated systems (bots, scripts) to access the Service</li>
+                    <li>Spread misinformation about candidates, elections, or the voting process</li>
+                    <li>Attempt to manipulate, coerce, or influence other voters illegally</li>
+                    <li>Reverse engineer, decompile, or disassemble any part of the Service</li>
+                    <li>Use the Service for any illegal or unauthorized purpose</li>
+                </ul>
+            </div>
+
+            <!-- Voting Process -->
+            <div class="terms-section">
+                <h2>6. Voting Process and Rules</h2>
+                
+                <h3>6.1 Voting Rights</h3>
+                <p>Upon successful registration and identity verification, you will be granted the right to cast one vote per election. Once a vote is cast, it cannot be changed, retracted, or deleted.</p>
+
+                <h3>6.2 Vote Confidentiality</h3>
+                <p>Your vote is encrypted and stored securely. VoteShield ensures ballot secrecy - your individual vote choice will never be disclosed to any person, organization, or government entity.</p>
+
+                <h3>6.3 Face Recognition Verification</h3>
+                <p>We use facial recognition technology to verify your identity during login and voting. By using our Service, you consent to this biometric verification process.</p>
+
+                <h3>6.4 Final and Binding</h3>
+                <p>All votes cast through the Service are final and binding. You acknowledge that once you submit your vote, it cannot be changed or cancelled.</p>
+            </div>
+
+            <!-- Data and Privacy -->
+            <div class="terms-section">
+                <h2>7. Data Collection and Privacy</h2>
+                <p>We collect and process personal data including:</p>
+                <ul>
+                    <li>Personal identification information (name, email, Voter ID, date of birth)</li>
+                    <li>Facial biometric data for identity verification</li>
+                    <li>Voting records (anonymized and encrypted)</li>
+                    <li>Technical data (IP addresses, device information, usage logs)</li>
+                </ul>
+                <p>Your data is protected under our Privacy Policy, which is incorporated into these Terms by reference. We use industry-standard encryption and security measures to protect your information.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Data Protection:</strong> We employ end-to-end encryption, secure socket layer (SSL) technology, and multi-factor authentication to ensure your data remains secure and confidential.</p>
+                </div>
+            </div>
+
+            <!-- Intellectual Property -->
+            <div class="terms-section">
+                <h2>8. Intellectual Property Rights</h2>
+                <p>All content, features, and functionality of the Service, including but not limited to text, graphics, logos, icons, images, audio clips, digital downloads, data compilations, and software, are the exclusive property of VoteShield, Inc. and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
+                
+                <p>You may not:</p>
+                <ul>
+                    <li>Reproduce, distribute, modify, or create derivative works</li>
+                    <li>Use our trademarks, logos, or branding without written permission</li>
+                    <li>Frame or mirror any part of the Service without authorization</li>
+                </ul>
+            </div>
+
+            <!-- Service Availability -->
+            <div class="terms-section">
+                <h2>9. Service Availability and Modifications</h2>
+                
+                <h3>9.1 Availability</h3>
+                <p>We strive to ensure the Service is available 24/7, especially during active election periods. However, we do not guarantee uninterrupted access and may experience downtime for maintenance, updates, or unforeseen technical issues.</p>
+
+                <h3>9.2 Modifications</h3>
+                <p>We reserve the right to modify, suspend, or discontinue any part of the Service at any time with or without notice. We will make reasonable efforts to notify users of significant changes.</p>
+
+                <h3>9.3 Updates to Terms</h3>
+                <p>We may update these Terms from time to time. Changes will be effective immediately upon posting. Your continued use of the Service after changes constitutes acceptance of the updated Terms.</p>
+            </div>
+
+            <!-- Termination -->
+            <div class="terms-section">
+                <h2>10. Account Termination</h2>
+                
+                <h3>10.1 Termination by You</h3>
+                <p>You may request account deletion by contacting our support team. Note that voting records may be retained for legal compliance and audit purposes.</p>
+
+                <h3>10.2 Termination by Us</h3>
+                <p>We reserve the right to suspend or terminate your account if you:</p>
+                <ul>
+                    <li>Violate these Terms of Service</li>
+                    <li>Engage in fraudulent activity or vote manipulation</li>
+                    <li>Provide false or misleading information</li>
+                    <li>Attempt to compromise the security or integrity of the Service</li>
+                </ul>
+            </div>
+
+            <!-- Disclaimers -->
+            <div class="terms-section">
+                <h2>11. Disclaimers and Limitation of Liability</h2>
+                
+                <h3>11.1 Service "As Is"</h3>
+                <p>THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+
+                <h3>11.2 Limitation of Liability</h3>
+                <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, VOTESHIELD, INC. SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.</p>
+
+                <h3>11.3 Technical Failures</h3>
+                <p>We are not responsible for any technical failures, internet connectivity issues, or device malfunctions that may prevent you from accessing or using the Service.</p>
+            </div>
+
+            <!-- Governing Law -->
+            <div class="terms-section">
+                <h2>12. Governing Law and Dispute Resolution</h2>
+                
+                <h3>12.1 Governing Law</h3>
+                <p>These Terms shall be governed by and construed in accordance with the laws of India and the State of Uttarakhand, without regard to conflict of law principles.</p>
+
+                <h3>12.2 Dispute Resolution</h3>
+                <p>Any disputes arising from or relating to these Terms or the Service shall be resolved through:</p>
+                <ol>
+                    <li>Good faith negotiation between the parties</li>
+                    <li>Mediation by a mutually agreed-upon mediator</li>
+                    <li>Binding arbitration in Dehradun, Uttarakhand, India</li>
+                </ol>
+
+                <h3>12.3 Jurisdiction</h3>
+                <p>You agree to submit to the exclusive jurisdiction of the courts located in Dehradun, Uttarakhand, India for any legal proceedings.</p>
+            </div>
+
+            <!-- Compliance -->
+            <div class="terms-section">
+                <h2>13. Legal Compliance and Election Laws</h2>
+                <p>VoteShield operates in compliance with:</p>
+                <ul>
+                    <li>Election Commission of India guidelines</li>
+                    <li>Information Technology Act, 2000</li>
+                    <li>Personal Data Protection laws</li>
+                    <li>All applicable electoral and voting regulations</li>
+                </ul>
+                <p>Users must comply with all applicable election laws and regulations in their jurisdiction.</p>
+            </div>
+
+            <!-- Indemnification -->
+            <div class="terms-section">
+                <h2>14. Indemnification</h2>
+                <p>You agree to indemnify, defend, and hold harmless VoteShield, Inc., its officers, directors, employees, agents, and affiliates from any claims, liabilities, damages, losses, costs, or expenses (including reasonable attorneys' fees) arising from:</p>
+                <ul>
+                    <li>Your use or misuse of the Service</li>
+                    <li>Your violation of these Terms</li>
+                    <li>Your violation of any rights of another person or entity</li>
+                    <li>Any fraudulent or illegal activity</li>
+                </ul>
+            </div>
+
+            <!-- Severability -->
+            <div class="terms-section">
+                <h2>15. Severability and Entire Agreement</h2>
+                <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions will remain in full force and effect. These Terms, together with our Privacy Policy, constitute the entire agreement between you and VoteShield regarding the Service.</p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="terms-section">
+                <h2>16. Contact Information</h2>
+                <p>For questions, concerns, or support regarding these Terms or our Service, please contact us:</p>
+                
+                <div class="contact-info">
+                    <p><strong>VoteShield, Inc.</strong></p>
+                    <p>Email: voteshieldindia@gmail.com</p>
+                    <p>Legal: legal@voteshield.com</p>
+                    <p>Address: Dehradun, Uttarakhand, India</p>
+                    <p>Phone: +91-12345 67890</p>
+                </div>
+            </div>
+
+            <!-- Acknowledgment -->
+            <div class="terms-section">
+                <div class="highlight-box">
+                    <p><strong>Acknowledgment:</strong> By using VoteShield, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. Thank you for helping us maintain a secure, transparent, and democratic voting system.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="logo-icon">⚡</div>
+                    <span style="font-size: 28px; font-weight: 600; color: #e6e6e6;">VoteShield</span>
+                </div>
+                <div style="font-size: 13px; color: #aaa; margin-top: 32px;">
+                    © 2025 VoteShield, Inc.<br>All rights reserved.
+                </div>
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Quick Links</div>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Legal</div>
+                <ul>
+                    <li><a href="/terms-of-service">Terms of Service</a></li>
+                    <li><a href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Connect</div>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

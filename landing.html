@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteShield - Secure Your Vote</title>
+    <style>
+        :root {
+            --color-cream-50: rgba(255, 245, 235, 1);
+            --color-cream-100: rgba(255, 250, 240, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-red-600: rgba(192, 21, 47, 1);
+            --color-red-700: rgba(150, 16, 37, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-cream-50);
+            color: var(--color-slate-900);
+            line-height: 1.6;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: var(--color-cream-100);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(var(--color-brown-600-rgb), 0.15);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-slate-900);
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--color-slate-900);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-slate-900);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-teal-500);
+        }
+
+        .login-btn {
+            background-color: #DC2626;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #B91C1C;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 14px;
+            color: var(--color-slate-500);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero-content h2 {
+            font-size: 42px;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            color: var(--color-slate-900);
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: var(--color-slate-500);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .get-started-btn {
+            background-color: #DC2626;
+            color: white;
+            padding: 14px 36px;
+            border-radius: 28px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .get-started-btn:hover {
+            background-color: #B91C1C;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            filter: grayscale(100%);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--color-cream-100);
+            padding: 80px 40px;
+            border-top: 1px solid rgba(var(--color-brown-600-rgb), 0.15);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--color-slate-900);
+            font-weight: 600;
+        }
+
+        .feature p {
+            font-size: 15px;
+            color: var(--color-slate-500);
+            line-height: 1.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 40px;
+            }
+
+            .hero-content h2 {
+                font-size: 32px;
+            }
+
+            .features-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <span>VoteShield</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to VoteShield: Secure Your Vote</h1>
+            <h2>VoteShield is an online voting platform that prioritizes security, transparency, and accessibility.</h2>
+            <p>Our mission is to empower citizens to participate in the democratic process with confidence and ease</p>
+            <a href="/register" class="get-started-btn">Get Started</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/31f4fe1d-5f05-4ac2-8847-fe0ecf7dbdb5.png" alt="Person with tablet and car">
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <div class="feature">
+                <h3>About VoteShield</h3>
+                <p>At VoteShield, we believe that every vote matters. Our platform is designed to provide a secure and accessible way for citizens to exercise their democratic right to vote.</p>
+            </div>
+            <div class="feature">
+                <h3>Our Mission</h3>
+                <p>Our mission is to revolutionize the way people vote. We aim to create a more secure, user-friendly, and accessible platform that empowers citizens to participate in democracy.</p>
+            </div>
+            <div class="feature">
+                <h3>Why Choose</h3>
+                <p>VoteShield is the trusted choice for secure online voting. Our platform combines cutting-edge encryption technology, robust security measures.</p>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+<footer style="background: #23262a; color: #e6e6e6; padding: 50px 0 30px 0;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; padding: 0 40px;">
+        <!-- Logo and copyright -->
+        <div style="flex: 1; min-width: 200px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div class="logo-icon">⚡</div>
+                <span style="font-size: 28px; font-weight: 600; color: #e6e6e6;">VoteShield</span>
+            </div>
+            <div style="font-size: 13px; color: #aaa; margin-top: 32px;">
+                © 2025 VoteShield, Inc.<br>
+                All rights reserved.
+            </div>
+        </div>
+        <!-- Quick Links -->
+        <div style="flex: 1; min-width: 160px;">
+            <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Quick Links</div>
+            <ul style="list-style: none; padding: 0; font-size: 14px; color: #e6e6e6;">
+                <li style="margin-bottom: 7px;"><a href="/" style="color: #e6e6e6; text-decoration: none;">Home</a></li>
+                <li style="margin-bottom: 7px;"><a href="/about" style="color: #e6e6e6; text-decoration: none;">About</a></li>
+                <li style="margin-bottom: 7px; display:none;"><a href="#products" style="color: #e6e6e6; text-decoration: none;">Products</a></li>
+                <li style="margin-bottom: 7px;"><a href="/contact" style="color: #e6e6e6; text-decoration: none;">Contact</a></li>
+            </ul>
+        </div>
+        <!-- Resources Links -->
+        <div style="flex: 1; min-width: 160px;">
+            <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Resources</div>
+            <ul style="list-style: none; padding: 0; font-size: 14px; color: #e6e6e6;">
+                <li style="margin-bottom: 7px;"><a href="#" style="color: #e6e6e6; text-decoration: none;">FAQs</a></li>
+                <li style="margin-bottom: 7px;"><a href="#" style="color: #e6e6e6; text-decoration: none;">Help Center</a></li>
+                <li style="margin-bottom: 7px;"><a href="#" style="color: #e6e6e6; text-decoration: none;">Privacy Policy</a></li>
+                <li style="margin-bottom: 7px;"><a href="/terms" style="color: #e6e6e6; text-decoration: none;">Terms of Service</a></li>
+            </ul>
+        </div>
+        <!-- Social/Contact Links -->
+        <div style="flex: 1; min-width: 160px;">
+            <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Connect with Us</div>
+            <ul style="list-style: none; padding: 0; font-size: 14px; color: #e6e6e6;">
+                <li style="margin-bottom: 7px;"><a href="#" style="color: #e6e6e6; text-decoration: none;">Facebook</a></li>
+                <li style="margin-bottom: 7px;"><a href="#" style="color: #e6e6e6; text-decoration: none;">Twitter</a></li>
+                <li style="margin-bottom: 7px;"><a href="#" style="color: #e6e6e6; text-decoration: none;">LinkedIn</a></li>
+                <li style="margin-bottom: 7px;"><a href="#" style="color: #e6e6e6; text-decoration: none;">Instagram</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

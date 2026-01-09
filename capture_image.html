@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Registration - VoteShield</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .instructions {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .instructions h3 {
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .instructions ul {
+            margin-left: 20px;
+            color: #856404;
+        }
+        
+        .instructions li {
+            margin: 5px 0;
+        }
+        
+        .camera-container {
+            position: relative;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        #video {
+            width: 100%;
+            display: block;
+            transform: scaleX(-1);
+        }
+        
+        #canvas {
+            display: none;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        
+        .status.recording {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+        
+        .status.warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 2px solid #ffc107;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #dc3545;
+        }
+        
+        .blink-indicator {
+            text-align: center;
+            font-size: 48px;
+            margin: 10px 0;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-success:hover:not(:disabled) {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Face Registration</h1>
+        <p class="subtitle">Please capture a clear photo of your face for verification purposes.</p>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="instructions">
+            <h3>📸 Instructions:</h3>
+            <ul>
+                <li>Ensure good lighting on your face</li>
+                <li>Remove glasses if possible</li>
+                <li>Look directly at the camera</li>
+                {% if blink_detection %}
+                <li><strong>Blink naturally 2-3 times during capture</strong></li>
+                {% endif %}
+                <li>Keep your face centered in the frame</li>
+            </ul>
+        </div>
+        
+        <div class="camera-container">
+            <video id="video" autoplay></video>
+            <canvas id="canvas"></canvas>
+        </div>
+        
+        <div id="status" class="status warning" style="display: none;">
+            Initializing camera...
+        </div>
+        
+        <div id="blink-indicator" class="blink-indicator" style="display: none;">
+            👁️
+        </div>
+        
+        <div class="progress-bar" id="progress-container" style="display: none;">
+            <div class="progress-fill" id="progress-bar"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="startBtn" class="btn-primary" onclick="startRecording()">
+                {% if blink_detection %}
+                Start Recording (Blink Detection)
+                {% else %}
+                Capture Image
+                {% endif %}
+            </button>
+            <button id="submitBtn" class="btn-success" onclick="submitImage()" style="display: none;">
+                Submit Registration
+            </button>
+        </div>
+        
+        <form id="imageForm" method="POST" style="display: none;">
+            <input type="hidden" name="image_data" id="image_data">
+            <input type="hidden" name="frame_sequence" id="frame_sequence">
+        </form>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const statusDiv = document.getElementById('status');
+        const startBtn = document.getElementById('startBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const blinkIndicator = document.getElementById('blink-indicator');
+        const progressContainer = document.getElementById('progress-container');
+        const progressBar = document.getElementById('progress-bar');
+        
+        const BLINK_DETECTION = {{ 'true' if blink_detection else 'false' }};
+        const CAPTURE_DURATION = 3000; // 3 seconds
+        const FRAME_INTERVAL = 300; // Capture frame every 300ms
+        
+        let stream = null;
+        let capturedFrames = [];
+        let finalImage = null;
+        let isRecording = false;
+
+        // Initialize camera
+        async function initCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    } 
+                });
+                video.srcObject = stream;
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'status warning';
+                statusDiv.textContent = 'Camera ready. Click "Start Recording" to begin.';
+            } catch (err) {
+                console.error('Camera error:', err);
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'Camera access denied. Please allow camera access.';
+                startBtn.disabled = true;
+            }
+        }
+
+        function captureFrame() {
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+            return canvas.toDataURL('image/jpeg', 0.8);
+        }
+
+        async function startRecording() {
+            if (isRecording) return;
+            
+            isRecording = true;
+            capturedFrames = [];
+            startBtn.disabled = true;
+            submitBtn.style.display = 'none';
+            
+            if (BLINK_DETECTION) {
+                statusDiv.className = 'status recording';
+                statusDiv.textContent = 'Recording... Please blink naturally 2-3 times';
+                blinkIndicator.style.display = 'block';
+                progressContainer.style.display = 'block';
+                
+                const totalFrames = Math.floor(CAPTURE_DURATION / FRAME_INTERVAL);
+                let frameCount = 0;
+                
+                const interval = setInterval(() => {
+                    const frame = captureFrame();
+                    capturedFrames.push(frame);
+                    frameCount++;
+                    
+                    // Update progress
+                    const progress = (frameCount / totalFrames) * 100;
+                    progressBar.style.width = progress + '%';
+                    
+                    // Blink animation
+                    if (frameCount % 3 === 0) {
+                        blinkIndicator.textContent = '👁️';
+                    } else if (frameCount % 3 === 1) {
+                        blinkIndicator.textContent = '😑';
+                    }
+                    
+                    if (frameCount >= totalFrames) {
+                        clearInterval(interval);
+                        finishRecording();
+                    }
+                }, FRAME_INTERVAL);
+            } else {
+                // Simple capture without blink detection
+                statusDiv.className = 'status recording';
+                statusDiv.textContent = 'Capturing image...';
+                
+                setTimeout(() => {
+                    finalImage = captureFrame();
+                    finishRecording();
+                }, 1000);
+            }
+        }
+
+        function finishRecording() {
+            isRecording = false;
+            blinkIndicator.style.display = 'none';
+            progressContainer.style.display = 'none';
+            progressBar.style.width = '0%';
+            
+            if (BLINK_DETECTION && capturedFrames.length > 0) {
+                finalImage = capturedFrames[Math.floor(capturedFrames.length / 2)];
+            }
+            
+            if (finalImage) {
+                statusDiv.className = 'status recording';
+                statusDiv.textContent = '✓ Image captured successfully! Click "Submit" to continue.';
+                submitBtn.style.display = 'inline-block';
+                startBtn.textContent = 'Retake';
+                startBtn.disabled = false;
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'Failed to capture image. Please try again.';
+                startBtn.disabled = false;
+            }
+        }
+
+        function submitImage() {
+            if (!finalImage) {
+                alert('Please capture your image first.');
+                return;
+            }
+            
+            document.getElementById('image_data').value = finalImage;
+            
+            if (BLINK_DETECTION && capturedFrames.length > 0) {
+                document.getElementById('frame_sequence').value = capturedFrames.join('|||');
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            
+            document.getElementById('imageForm').submit();
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', initCamera);
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
+    </script>
+</body>
+</html>

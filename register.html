@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteShield - Register</title>
+    <style>
+        :root {
+            --color-cream-50: rgba(255, 245, 235, 1);
+            --color-cream-100: rgba(255, 250, 240, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-red-600: #DC2626;
+            --color-red-700: #B91C1C;
+            --color-brown-600-rgb: 94, 82, 64;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-cream-50);
+            color: var(--color-slate-900);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--color-cream-100);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(var(--color-brown-600-rgb), 0.15);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-slate-900);
+        }
+
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--color-slate-900);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--color-slate-900);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-red-600);
+        }
+
+        .login-btn {
+            background-color: var(--color-red-600);
+            color: white;
+            padding: 10px 28px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: var(--color-red-700);
+        }
+
+        .register-container {
+            max-width: 500px;
+            margin: 60px auto;
+            background-color: var(--color-cream-100);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .register-container h2 {
+            margin-bottom: 30px;
+            color: var(--color-slate-900);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .flash-messages {
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #16a34a;
+        }
+
+        .alert-danger {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid var(--color-red-600);
+        }
+
+        .alert-warning {
+            background-color: #fef3c7;
+            color: #92400e;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .register-container label {
+            display: block;
+            text-align: left;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--color-slate-900);
+            font-weight: 500;
+        }
+
+        .register-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(var(--color-brown-600-rgb), 0.2);
+            border-radius: 8px;
+            font-size: 15px;
+            background-color: var(--color-cream-50);
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .register-container input:focus {
+            border-color: var(--color-red-600);
+        }
+
+        .register-container input.error {
+            border-color: var(--color-red-600);
+        }
+
+        .input-help {
+            font-size: 12px;
+            color: var(--color-slate-500);
+            margin-top: -15px;
+            margin-bottom: 15px;
+        }
+
+        .input-error {
+            font-size: 12px;
+            color: var(--color-red-600);
+            margin-top: -15px;
+            margin-bottom: 15px;
+            display: none;
+        }
+
+        .register-container button {
+            background-color: var(--color-red-600);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .register-container button:hover {
+            background-color: var(--color-red-700);
+        }
+
+        .register-container button:disabled {
+            background-color: var(--color-slate-500);
+            cursor: not-allowed;
+        }
+
+        .register-container p {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .register-container a {
+            color: var(--color-red-600);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-container a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #23262a;
+            color: #e6e6e6;
+            padding: 50px 0 30px 0;
+            margin-top: 80px;
+        }
+
+        footer .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+            color: #e6e6e6;
+        }
+
+        footer a {
+            color: #e6e6e6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .logo-icon {
+            background-color: var(--color-slate-900);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .register-container {
+                margin: 40px 20px;
+                padding: 30px;
+            }
+
+            footer .footer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <span>VoteShield</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/login" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="register-container">
+        <h2>Create Your Account</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="/register" method="POST" id="registerForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="voter_id_number">Voter ID Number</label>
+            <input 
+                type="text" 
+                id="voter_id_number" 
+                name="voter_id_number" 
+                placeholder="ABC1234567" 
+                maxlength="10"
+                pattern="[A-Z]{3}[0-9]{7}"
+                title="Must be 3 capital letters followed by 7 digits (e.g., ABC1234567)"
+                required
+                style="text-transform: uppercase;">
+            <div class="input-help">Format: 3 capital letters + 7 digits (e.g., ABC1234567)</div>
+            <div class="input-error" id="voter_id_error">Invalid format! Use 3 capital letters followed by 7 digits.</div>
+
+            <label for="date_of_birth">Date of Birth</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" required>
+            <div class="input-help">You must be 18 years or older to register</div>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a strong password" required minlength="6">
+            <div class="input-help">Minimum 6 characters</div>
+
+            <button type="submit" id="submitBtn">Register</button>
+
+            <p>Already have an account? <a href="/login">Login here</a></p>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="logo-icon">⚡</div>
+                    <span style="font-size: 28px; font-weight: 600; color: #e6e6e6;">VoteShield</span>
+                </div>
+                <div style="font-size: 13px; color: #aaa; margin-top: 32px;">
+                    © 2025 VoteShield, Inc.<br>All rights reserved.
+                </div>
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Quick Links</div>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Resources</div>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="/terms">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Connect with Us</div>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const voterIdInput = document.getElementById('voter_id_number');
+        const voterIdError = document.getElementById('voter_id_error');
+        const submitBtn = document.getElementById('submitBtn');
+        const dateInput = document.getElementById('date_of_birth');
+
+        // Auto-format Voter ID to uppercase
+        voterIdInput.addEventListener('input', function(e) {
+            let value = e.target.value.toUpperCase();
+            
+            // Remove any non-alphanumeric characters
+            value = value.replace(/[^A-Z0-9]/g, '');
+            
+            // Limit to 10 characters
+            if (value.length > 10) {
+                value = value.substring(0, 10);
+            }
+            
+            e.target.value = value;
+            validateVoterId();
+        });
+
+        // Validate Voter ID format
+        function validateVoterId() {
+            const value = voterIdInput.value;
+            const pattern = /^[A-Z]{3}[0-9]{7}$/;
+            
+            if (value.length === 0) {
+                voterIdInput.classList.remove('error');
+                voterIdError.style.display = 'none';
+                return true;
+            }
+            
+            if (pattern.test(value)) {
+                voterIdInput.classList.remove('error');
+                voterIdError.style.display = 'none';
+                return true;
+            } else {
+                voterIdInput.classList.add('error');
+                voterIdError.style.display = 'block';
+                return false;
+            }
+        }
+
+        // Validate age (18+)
+        function validateAge() {
+            const dob = new Date(dateInput.value);
+            const today = new Date();
+            let age = today.getFullYear() - dob.getFullYear();
+            const monthDiff = today.getMonth() - dob.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+                age--;
+            }
+            
+            return age >= 18;
+        }
+
+        // Form validation on submit
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            const voterIdValid = validateVoterId();
+            
+            if (!voterIdValid) {
+                e.preventDefault();
+                alert('Please enter a valid Voter ID (3 capital letters + 7 digits)');
+                voterIdInput.focus();
+                return false;
+            }
+
+            if (dateInput.value && !validateAge()) {
+                e.preventDefault();
+                alert('You must be at least 18 years old to register.');
+                dateInput.focus();
+                return false;
+            }
+
+            // Disable submit button to prevent double submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Registering...';
+        });
+
+        // Set max date to 18 years ago
+        const today = new Date();
+        const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+        dateInput.max = maxDate.toISOString().split('T')[0];
+    </script>
+
+</body>
+</html>

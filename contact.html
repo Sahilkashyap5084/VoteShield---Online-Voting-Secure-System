@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | VoteShield</title>
+  <style>
+    :root {
+      --color-cream-50: rgba(255, 245, 235, 1);
+      --color-cream-100: rgba(255, 250, 240, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-red-600: rgba(192, 21, 47, 1);
+      --color-red-700: rgba(150, 16, 37, 1);
+      --color-brown-600-rgb: 94, 82, 64;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--color-cream-50);
+      color: var(--color-slate-900);
+      line-height: 1.6;
+    }
+
+    /* Header Navigation */
+    header {
+      background-color: var(--color-cream-100);
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(var(--color-brown-600-rgb), 0.15);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--color-slate-900);
+    }
+
+    .logo-icon {
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-slate-900);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--color-slate-900);
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-teal-500);
+    }
+
+    .login-btn {
+      background-color: #DC2626;
+      color: white;
+      padding: 10px 28px;
+      border-radius: 24px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: #B91C1C;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 40px;
+      background-color: var(--color-cream-100);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .contact-info h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: 500;
+      color: var(--color-slate-900);
+    }
+
+    .contact-info p {
+      color: var(--color-slate-500);
+      font-size: 16px;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .contact-info div {
+      margin-top: 20px;
+      font-size: 15px;
+    }
+
+    .contact-info strong {
+      color: var(--color-slate-900);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    input, textarea {
+      padding: 12px 14px;
+      border: 1px solid rgba(var(--color-brown-600-rgb), 0.25);
+      border-radius: 8px;
+      font-size: 15px;
+      width: 100%;
+      background-color: white;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--color-red-600);
+      box-shadow: 0 0 3px rgba(192, 21, 47, 0.2);
+    }
+
+    button {
+      background-color: #DC2626;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #B91C1C;
+    }
+
+    /* Footer */
+    footer {
+      background: #23262a;
+      color: #e6e6e6;
+      padding: 50px 0 30px 0;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #e6e6e6;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+      padding: 0 40px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+      nav {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .nav-links {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">
+        <div class="logo-icon">⚡</div>
+        <span>VoteShield</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/login" class="login-btn">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-info">
+      <h1>Contact Us</h1>
+      <p>We’d love to hear from you! Whether you have questions, feedback, or partnership opportunities, feel free to reach out.</p>
+      <div><strong>Email:</strong> voteshieldindia@gmail.com</div>
+      <div><strong>Phone:</strong> +91 12345 67890</div>
+      <div><strong>Address:</strong> Graphic Era Deemed to be University 248002, Dehradun, India</div>
+    </div>
+
+    <form method="POST" action="/contact">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="logo-icon">⚡</div>
+          <span style="font-size: 28px; font-weight: 600; color: #e6e6e6;">VoteShield</span>
+        </div>
+        <div style="font-size: 13px; color: #aaa; margin-top: 32px;">
+          © 2025 VoteShield, Inc.<br>All rights reserved.
+        </div>
+      </div>
+
+      <div>
+        <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Quick Links</div>
+        <ul style="list-style: none; padding: 0; font-size: 14px;">
+          <li style="margin-bottom: 7px;"><a href="/">Home</a></li>
+          <li style="margin-bottom: 7px;"><a href="/about">About</a></li>
+          <li style="margin-bottom: 7px;"><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Resources</div>
+        <ul style="list-style: none; padding: 0; font-size: 14px;">
+          <li style="margin-bottom: 7px;"><a href="#">FAQs</a></li>
+          <li style="margin-bottom: 7px;"><a href="#">Help Center</a></li>
+          <li style="margin-bottom: 7px;"><a href="#">Privacy Policy</a></li>
+          <li style="margin-bottom: 7px;"><a href="/terms">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div style="font-weight: bold; font-size: 15px; margin-bottom: 18px;">Connect with Us</div>
+        <ul style="list-style: none; padding: 0; font-size: 14px;">
+          <li style="margin-bottom: 7px;"><a href="#">Facebook</a></li>
+          <li style="margin-bottom: 7px;"><a href="#">Twitter</a></li>
+          <li style="margin-bottom: 7px;"><a href="#">LinkedIn</a></li>
+          <li style="margin-bottom: 7px;"><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
